@@ -7,3 +7,15 @@ dependencies = [
     "django>=6.1.3",
     "django-environ>=0.14.0",
 ]
+
+[dependency-groups]
+dev = [
+    "ruff>=0.17.6",
+]
+
+[tool.ruff]
+line-length = 100
+extend-exclude = ["**/migrations"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "DJ"]
