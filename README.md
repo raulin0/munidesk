@@ -14,6 +14,7 @@ Under development.
 
 - Python 3.15+ (installed and managed by [uv](https://docs.astral.sh/uv/))
 - [Django](https://www.djangoproject.com/)
+- [Django REST Framework](https://www.django-rest-framework.org/)
 - [pytest](https://docs.pytest.org/) with [pytest-django](https://pytest-django.readthedocs.io/)
 - [Ruff](https://docs.astral.sh/ruff/) for linting and formatting
 
@@ -70,7 +71,8 @@ No global Python installation is needed: uv downloads and uses the version pinne
    uv run python manage.py runserver
    ```
 
-The Django Admin is available at <http://127.0.0.1:8000/admin/>.
+The API is available at <http://127.0.0.1:8000/api/> and the Django Admin at
+<http://127.0.0.1:8000/admin/>.
 
 ## Environment variables
 
@@ -102,6 +104,41 @@ Business rules:
 - Records referenced by other records cannot be deleted.
 
 User-facing labels, help texts and validation messages are in Brazilian Portuguese.
+
+## API
+
+All endpoints require an authenticated user (session or HTTP Basic authentication). List
+responses are paginated with 20 items per page (`?page=2`).
+
+| Resource         | Endpoint                  | Public body `kind` values (for reference)  |
+| ---------------- | ------------------------- | ------------------------------------------ |
+| Municipalities   | `/api/municipalities/`    |                                            |
+| Public bodies    | `/api/public-bodies/`     | `city_hall`, `secretariat`, `city_council`, `autarchy`, `foundation`, `other` |
+| Positions        | `/api/positions/`         |                                            |
+| Public officials | `/api/public-officials/`  |                                            |
+
+Each resource supports:
+
+| Method   | Path          | Action               |
+| -------- | ------------- | -------------------- |
+| `GET`    | `/<resource>/`      | List records   |
+| `POST`   | `/<resource>/`      | Create a record |
+| `GET`    | `/<resource>/<id>/` | Retrieve a record |
+| `PUT`    | `/<resource>/<id>/` | Replace a record |
+| `PATCH`  | `/<resource>/<id>/` | Partially update a record |
+| `DELETE` | `/<resource>/<id>/` | Delete a record (`409 Conflict` if other records depend on it) |
+
+Example:
+
+```bash
+curl -u admin:your-password \
+  -H "Content-Type: application/json" \
+  -d '{"name": "Campinas", "state": "SP", "ibge_code": "3509502"}' \
+  http://127.0.0.1:8000/api/municipalities/
+```
+
+The browsable API is available in the browser after logging in at
+<http://127.0.0.1:8000/api-auth/login/>.
 
 ## Running tests
 

@@ -1,4 +1,5 @@
 import pytest
+from rest_framework.test import APIClient
 
 from municipalities.models import Municipality, Position, PublicBody, PublicOfficial
 
@@ -36,3 +37,14 @@ def public_official(public_body, position):
         email="maria.santos@campinas.sp.gov.br",
         phone="(19) 99876-5432",
     )
+
+
+@pytest.fixture
+def api_client(django_user_model):
+    user = django_user_model.objects.create_user(
+        username="ana.oliveira",
+        password="senha-forte-de-teste",
+    )
+    client = APIClient()
+    client.force_authenticate(user=user)
+    return client
