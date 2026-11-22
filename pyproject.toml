@@ -1,6 +1,6 @@
 [project]
 name = "munidesk"
-version = "0.1.0"
+version = "1.0.0"
 description = "Client municipalities data management made easy"
 requires-python = ">=3.15"
 dependencies = [

@@ -8,7 +8,8 @@ including their public bodies and the public officials relevant to each provider
 
 ## Project status
 
-Under development.
+Stable. See the [releases page](https://github.com/raulin0/munidesk/releases)
+for the changelog.
 
 ## Tech stack
 
@@ -159,3 +160,9 @@ uv run ruff format .
 - `develop`: integration branch.
 - `feature/*`: short-lived branches created from `develop` and merged back through pull requests.
 - Commit messages follow [Conventional Commits](https://www.conventionalcommits.org/).
+
+## Versioning
+
+The project follows [Semantic Versioning](https://semver.org/). The current version is defined in
+`pyproject.toml` (`uv version` prints it). Each release is published on GitHub Releases with a
+tag in the plain `MAJOR.MINOR.PATCH` format (for example, `1.0.0`) and changelog notes.
