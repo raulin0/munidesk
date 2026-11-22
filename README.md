@@ -14,6 +14,7 @@ Under development.
 
 - Python 3.15+ (installed and managed by [uv](https://docs.astral.sh/uv/))
 - [Django](https://www.djangoproject.com/)
+- [pytest](https://docs.pytest.org/) with [pytest-django](https://pytest-django.readthedocs.io/)
 - [Ruff](https://docs.astral.sh/ruff/) for linting and formatting
 
 ## Requirements
@@ -57,11 +58,19 @@ No global Python installation is needed: uv downloads and uses the version pinne
    uv run python manage.py migrate
    ```
 
-6. Start the development server:
+6. Create an administrator account:
+
+   ```bash
+   uv run python manage.py createsuperuser
+   ```
+
+7. Start the development server:
 
    ```bash
    uv run python manage.py runserver
    ```
+
+The Django Admin is available at <http://127.0.0.1:8000/admin/>.
 
 ## Environment variables
 
@@ -72,6 +81,33 @@ No global Python installation is needed: uv downloads and uses the version pinne
 | `ALLOWED_HOSTS` | Comma-separated list of hosts allowed to serve the project.  | `localhost,127.0.0.1` |
 
 The `.env` file is ignored by Git. Only `.env.example` is versioned.
+
+## Data model
+
+| Model            | Description                                                                 |
+| ---------------- | --------------------------------------------------------------------------- |
+| `Municipality`   | Client municipality: name, state (UF) and 7-digit IBGE code.                |
+| `PublicBody`     | Body of a municipality (city hall, secretariat, etc.) with optional acronym. |
+| `Position`       | Catalog of positions held by public officials.                              |
+| `PublicOfficial` | Official linked to a public body and a position, with contact details.      |
+
+Business rules:
+
+- The IBGE code is unique and must have exactly 7 digits.
+- A municipality name is unique within its state.
+- A public body acronym is optional. When provided, it must follow the usual Brazilian municipal
+  pattern (2 to 15 uppercase letters, e.g. `SEMED`) and be unique within the municipality.
+- A public body name is unique within the municipality, and position names are unique.
+- Phones use the `(99) 99999-9999` or `(99) 9999-9999` format.
+- Records referenced by other records cannot be deleted.
+
+User-facing labels, help texts and validation messages are in Brazilian Portuguese.
+
+## Running tests
+
+```bash
+uv run pytest
+```
 
 ## Code quality
 
