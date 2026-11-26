@@ -65,7 +65,7 @@ wheels = [
 ]
 
 [[package]]
-name = "munidesk"
+name = "mymunibase"
 version = "1.0.0"
 source = { virtual = "." }
 dependencies = [

@@ -1,5 +1,5 @@
 [project]
-name = "munidesk"
+name = "mymunibase"
 version = "1.0.0"
 description = "Client municipalities data management made easy"
 requires-python = ">=3.15"
