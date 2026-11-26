@@ -2,8 +2,8 @@ from django.contrib import admin
 
 from .models import Municipality, Position, PublicBody, PublicOfficial
 
-admin.site.site_header = "MuniDesk"
-admin.site.site_title = "MuniDesk"
+admin.site.site_header = "MyMuniBase"
+admin.site.site_title = "MyMuniBase"
 admin.site.index_title = "Gestão de municípios clientes"
 
 
