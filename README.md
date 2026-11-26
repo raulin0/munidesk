@@ -1,4 +1,4 @@
-# MuniDesk
+# MyMuniBase
 
 > Client municipalities data management made easy.
 
@@ -8,7 +8,7 @@ including their public bodies and the public officials relevant to each provider
 
 ## Project status
 
-Stable. See the [releases page](https://github.com/raulin0/munidesk/releases)
+Stable. See the [releases page](https://github.com/raulin0/mymunibase/releases)
 for the changelog.
 
 ## Tech stack
@@ -32,8 +32,8 @@ No global Python installation is needed: uv downloads and uses the version pinne
 1. Clone the repository and enter the project folder:
 
    ```bash
-   git clone https://github.com/raulin0/munidesk.git
-   cd munidesk
+   git clone https://github.com/raulin0/mymunibase.git
+   cd mymunibase
    ```
 
 2. Install the dependencies (this creates the `.venv` virtual environment):

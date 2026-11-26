@@ -1,4 +1,4 @@
-"""Django settings for the MuniDesk project."""
+"""Django settings for the MyMuniBase project."""
 
 from pathlib import Path
 
